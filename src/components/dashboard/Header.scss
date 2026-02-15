@@ -1,0 +1,326 @@
+@use "sass:color";
+@use "../../styles/variables" as *;
+
+/* Animação menu dropdown */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard__clients {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0 2rem;
+  gap: 2rem;
+  position: relative;
+
+  /* =========================================
+     MENU BASE (Mixins ou classes comuns)
+  ========================================= */
+  .clients__menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    z-index: 100;
+    min-width: 220px;
+    padding: 0.5rem;
+
+    background-color: $bg1;
+    border: 1px solid rgba($border, 0.6);
+    border-radius: 12px;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    animation: dropdownFade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      width: 10px;
+      height: 10px;
+      background-color: $bg1;
+      border-top: 1px solid rgba($border, 0.6);
+      border-left: 1px solid rgba($border, 0.6);
+      transform: rotate(45deg);
+    }
+
+    .menu-divider {
+      height: 1px;
+      background-color: $divider;
+      margin: 0.5rem 0;
+      opacity: 0.5;
+    }
+
+    button,
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 10px 12px;
+
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+
+      text-align: left;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: $text1;
+      text-decoration: none;
+      cursor: pointer;
+
+      transition: all 0.2s ease;
+
+      svg {
+        color: $text-muted;
+        font-size: 1rem;
+        transition: color 0.2s;
+      }
+
+      &:hover {
+        background-color: $input-bg;
+        color: $text1;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      &.danger-btn {
+        color: #ef4444;
+
+        svg {
+          color: #ef4444;
+        }
+
+        &:hover {
+          background-color: rgba(239, 68, 68, 0.1);
+        }
+      }
+    }
+  }
+
+  /* =========================================
+     LEFT (Usuário)
+  ========================================= */
+  .clients__left {
+    flex: 0 0 auto;
+    position: relative;
+
+    .clients__user {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      user-select: none;
+      padding: 4px 8px;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: rgba($text1, 0.03);
+      }
+    }
+
+    .title {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 1.5rem;
+      font-weight: 500;
+      padding-left: 15px;
+      border-left: 4px solid $bg2;
+      border-radius: 2px;
+      line-height: 1.2;
+      white-space: nowrap;
+      color: $text1;
+    }
+
+    .clients__user-menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: $text-muted;
+      display: flex;
+      align-items: center;
+      padding: 4px;
+      transition:
+        transform 0.2s ease,
+        color 0.2s;
+
+      &.active {
+        transform: rotate(180deg);
+        color: $bg2;
+      }
+    }
+
+    .clients__user-menu {
+      @extend .clients__menu;
+      left: 0;
+
+      &::before {
+        left: 20px;
+      }
+    }
+  }
+
+  /* =========================================
+     CENTER (Busca)
+  ========================================= */
+  .clients__center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+
+    .clients__search-container {
+      display: flex;
+      width: 100%;
+      max-width: 500px;
+      height: 44px;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: $bg1;
+      border: 1px solid transparent;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition:
+        box-shadow 0.2s,
+        border-color 0.2s;
+
+      &:focus-within {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: rgba($bg2, 0.3);
+      }
+
+      .clients__search {
+        flex: 1;
+        border: none;
+        padding: 0 16px;
+        font-size: 0.95rem;
+        outline: none;
+        background-color: #ffffff;
+        color: $text1;
+
+        &::placeholder {
+          color: $text-muted;
+        }
+      }
+
+      .clients__search-btn {
+        width: 50px;
+        background-color: $bg2;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $text2;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: $hover-green;
+        }
+
+        &:active {
+          background-color: $active-green;
+        }
+      }
+    }
+  }
+
+  /* =========================================
+     RIGHT (Ações)
+  ========================================= */
+  .clients__right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .clients__actions-menu {
+      @extend .clients__menu;
+      right: 0;
+
+      &::before {
+        right: 12px;
+      }
+    }
+
+    .clients__share-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .clients__copied-text {
+        position: absolute;
+        right: 100%;
+        margin-right: 11.5rem;
+        padding: 0.4rem 0.8rem;
+        background-color: $success;
+        color: white;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        white-space: nowrap;
+        animation: dropdownFade 0.2s;
+        pointer-events: none;
+      }
+
+      .clients__user-menu-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 6px;
+        color: $text1;
+        transition: background-color 0.2s;
+
+        &:hover,
+        &.active {
+          background-color: $input-bg;
+        }
+      }
+    }
+
+    .clients__add-btn {
+      background-color: $bg2;
+      color: $text2;
+      border: none;
+      padding: 0 20px;
+      height: 44px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background-color: $hover-green;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      &:disabled {
+        background-color: $border;
+        color: $text-muted;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+    }
+  }
+}

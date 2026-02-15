@@ -1,0 +1,239 @@
+@use "../../styles/variables" as *;
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $gradient-green;
+  padding: 24px;
+
+  &__container {
+    display: flex;
+    width: 900px;
+    min-height: 550px;
+    background: $bg1;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* LADO ESQUERDO: INFO */
+  &__welcome {
+    flex: 1.1;
+    padding: 60px;
+    background: linear-gradient(
+      180deg,
+      #f8fafc 0%,
+      #eff6ff 100%
+    ); // Degradê bem sutil
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; // Espalha o conteúdo
+    border-right: 1px solid $divider;
+    position: relative;
+
+    // Um elemento decorativo abstrato no fundo (opcional)
+    &::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 150px;
+      height: 150px;
+      background: rgba(16, 185, 129, 0.05);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: 34px;
+      font-weight: 800;
+      color: $text1;
+      line-height: 1.2;
+      margin-bottom: 16px;
+
+      span {
+        color: $bg2; // Destaca uma palavra em verde
+      }
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: $text-muted;
+      max-width: 320px;
+    }
+  }
+
+  &__credentials {
+    background: $bg1;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid $border;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+
+    .cred-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $bg2;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+      }
+
+      .value-box {
+        background: #f8fafc;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        color: $text1;
+        border: 1px inset rgba(0, 0, 0, 0.02);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+
+  &__note {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: $text-muted;
+
+    &::before {
+      content: "ℹ";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: $border;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: bold;
+    }
+  }
+
+  /* LADO DIREITO: FORMULÁRIO */
+  &__form {
+    flex: 0.9;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: $text1;
+      margin-bottom: -16px; // Aproxima o label do input
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: $text1;
+    margin-bottom: 8px;
+  }
+
+  input {
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1.5px solid $border;
+    border-radius: 10px;
+    background: $input-bg;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $bg2;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+    }
+  }
+
+  &__button {
+    margin-top: 8px;
+    padding: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    background: $bg2;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      background: $hover-green;
+      box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__error {
+    padding: 12px;
+    font-size: 13px;
+    color: $error;
+    background: $bg-error;
+    border-left: 4px solid $error; // Detalhe elegante de erro
+    border-radius: 4px;
+  }
+
+  &__link {
+    text-align: center;
+    font-size: 14px;
+    color: $text-muted;
+
+    a {
+      color: $bg2;
+      text-decoration: none;
+      font-weight: 600;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @media (max-width: 850px) {
+    &__container {
+      flex-direction: column;
+      width: 100%;
+      max-width: 450px;
+    }
+    &__welcome {
+      display: none;
+    } // Oculta a área de credenciais em telas pequenas para focar no login
+    &__form {
+      padding: 40px 30px;
+    }
+  }
+}

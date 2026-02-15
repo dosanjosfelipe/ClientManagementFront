@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    connect-src 'self' http://localhost:8080/;
+  "
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta charset="UTF-8" />
+    <meta name="direction" content="ltr" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="userManagement" content="Gestão de Usuários" />
+    <meta name="author" content="Felipe dos Anjos" />
+    <meta name="generator" content="Vite + React" />
+    <link rel="icon" type="image/x-icon" href="public/favicon.ico" />
+
+    <title>Gestão de Usuários</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

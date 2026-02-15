@@ -1,0 +1,99 @@
+@use "sass:color";
+@use "../../styles/variables" as *;
+
+.delete-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.delete-modal {
+  background: $bg1;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: $text1;
+    font-weight: 600;
+  }
+
+  p {
+    margin-bottom: 2rem;
+    color: $text-muted;
+    font-size: 1rem;
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: $text-muted;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $hover-green;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  &__confirm,
+  &__cancel {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      transform 0.1s;
+  }
+
+  &__confirm {
+    background-color: $success;
+    color: $text2;
+
+    &:hover {
+      background-color: $hover-green;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      background-color: $active-green;
+      transform: translateY(1px);
+    }
+  }
+
+  &__cancel {
+    background-color: $divider;
+    color: $text1;
+
+    &:hover {
+      background-color: $border;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+}

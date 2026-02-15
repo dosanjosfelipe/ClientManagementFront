@@ -1,0 +1,182 @@
+@use "sass:color";
+@use "../../styles/variables" as *;
+
+.dashboard__table-wrapper {
+  min-height: 31rem;
+  background: $bg1;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.table__info {
+  font-size: 15px;
+  justify-self: right;
+  color: $text1;
+}
+
+.dashboard__table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $bg1;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border: 1px solid $divider;
+
+  th,
+  td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid $divider;
+    border-right: 1px solid $divider;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  .table__id,
+  .table__phone,
+  .table__created,
+  .table__updated,
+  .table__actions {
+    text-align: center;
+  }
+
+  .table__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    button {
+      all: unset;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 6px;
+
+      transition:
+        transform 0.15s ease,
+        background-color 0.15s ease,
+        box-shadow 0.15s ease;
+
+      &:hover {
+        transform: scale(1.15);
+      }
+
+      &:active {
+        transform: scale(1.05);
+      }
+
+      &:focus-visible {
+        outline: 2px solid rgba(0, 0, 0, 0.4);
+        outline-offset: 2px;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      svg {
+        display: block;
+      }
+    }
+  }
+
+  th {
+    background-color: $bg2;
+    color: $text2;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    border-right: 1px solid #5a9f80;
+  }
+
+  tbody tr {
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #d3eee5;
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  .table__email-ellipsis {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.table__empty-row {
+  height: 455px;
+  background-color: rgba($card-bg, 0.4);
+  border-right: none !important;
+
+  .empty-state-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+    padding: 2rem;
+    animation: fadeIn 0.4s ease-out;
+
+    .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      background: rgba($bg2, 0.1);
+      color: $bg2;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .text-group {
+      text-align: center;
+
+      p {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $text1;
+        margin: 0 0 0.4rem 0;
+      }
+
+      span {
+        font-size: 0.9rem;
+        color: $text-muted;
+        font-style: normal;
+        display: block;
+        max-width: 250px;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

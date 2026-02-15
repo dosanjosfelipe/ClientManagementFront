@@ -1,0 +1,120 @@
+@use "../../styles/variables" as *;
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.register {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $gradient-green;
+  padding: 20px;
+
+  &__form {
+    width: 100%;
+    max-width: 420px; // Um pouco mais largo para melhor respiro
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background-color: $card-bg;
+    border-radius: 20px; // Consistente com o container de login
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: $text1;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  input {
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1.5px solid $border;
+    border-radius: 10px;
+    background-color: $input-bg;
+    color: $text1;
+    transition: all 0.2s ease;
+
+    &::placeholder {
+      color: $text-muted;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $bg2;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+    }
+  }
+
+  // O botão usa a classe login__button no seu JSX
+  .login__button {
+    margin-top: 8px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: $bg2;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      background-color: $hover-green;
+      box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  &__error {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: $error;
+    background-color: $bg-error;
+    border-left: 4px solid $error; // Detalhe elegante de design
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__link {
+    text-align: center;
+    font-size: 14px;
+    color: $text-muted;
+    margin-top: 8px;
+
+    a {
+      color: $bg2;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+
+      &:hover {
+        color: $hover-green;
+        text-decoration: underline;
+      }
+    }
+  }
+}

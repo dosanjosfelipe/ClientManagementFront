@@ -1,0 +1,133 @@
+@use "sass:color";
+@use "../../styles/variables" as *;
+
+.modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); // Escureci um pouco para dar foco
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: $bg1;
+  padding: 2.5rem;
+  border-radius: 12px; // Bordas mais suaves
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: $text1;
+    text-align: center;
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: $text-muted;
+    font-size: 1.2rem;
+    &:hover {
+      color: $hover-green;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .hidden-input {
+      display: none;
+    }
+
+    .file-dropzone {
+      border: 2px dashed $border;
+      border-radius: 10px;
+      padding: 2rem 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: rgba($input-bg, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &:hover,
+      &.dragging {
+        border-color: $bg2;
+        background: rgba($bg2, 0.05);
+      }
+
+      &.has-file {
+        border-style: solid;
+        border-color: $bg2;
+        background: rgba($bg2, 0.02);
+      }
+
+      .dropzone-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: $text-muted;
+
+        svg {
+          font-size: 2.5rem;
+          margin-bottom: 0.5rem;
+          color: $bg2;
+        }
+
+        .icon-success {
+          color: #2ecc71;
+        }
+
+        .file-name {
+          color: $text1;
+          font-weight: 500;
+          word-break: break-all;
+        }
+
+        .change-file {
+          font-size: 0.75rem;
+          text-decoration: underline;
+        }
+
+        small {
+          font-size: 0.7rem;
+        }
+      }
+    }
+
+    button {
+      background-color: $bg2;
+      color: $text2;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover:not(.disabled) {
+        background-color: $hover-green;
+        transform: translateY(-2px);
+      }
+
+      &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

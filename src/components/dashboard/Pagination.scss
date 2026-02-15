@@ -1,0 +1,43 @@
+@use "sass:color";
+@use "../../styles/variables" as *;
+
+.table__info {
+  color: rgb(110, 110, 110);
+}
+
+.dashboard__pagination {
+  margin-top: -20px;
+  display: flex;
+  justify-content: left;
+  gap: 18px;
+
+  button {
+    background-color: $bg2;
+    color: $text2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition:
+      background-color 0.2s,
+      transform 0.1s;
+
+    &:hover {
+      background-color: $hover-green;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      background-color: $active-green;
+      transform: translateY(1px);
+    }
+
+    &:disabled {
+      background-color: $border;
+      color: $text-muted;
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+// BACKGROUNDS
+$bg1: #ffffff;
+$bg2: #10b981;
+$bg3: #059669;
+$input-bg: #fcfdfc;
+$card-bg: #ffffff;
+$bg-error: #f8d7da;
+
+// TEXTOS
+$text1: #0f172a;
+$text2: #ffffff;
+$text-muted: #64748b;
+
+// BORDAS E EFEITOS
+$border: #e2e8f0;
+$divider: #f1f5f9;
+$border-err: #f5c2c7;
+$shadow:
+  0 10px 25px -5px rgba(0, 0, 0, 0.05),
+  0 8px 10px -6px rgba(0, 0, 0, 0.05);
+
+// ESTADOS
+$hover-green: #059669;
+$active-green: #116c15;
+$error: #ef4444;
+$success: #27ae60;
+
+$gradient-green: linear-gradient(135deg, #10b981 0%, #059669 100%);
