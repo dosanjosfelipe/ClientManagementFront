@@ -21,9 +21,11 @@ interface DashboardHeaderProps {
   onNewClient?: () => void;
   onSearchSubmit: (value: string) => void;
   onShareLink: () => void;
-  onEditUsername: () => void;
-  onExportClient: () => void;
-  onImportClient: (file: File) => Promise<boolean>;
+
+  onEditUsername?: () => void;
+  onExportClient?: () => void;
+  onImportClient?: (file: File) => Promise<boolean>;
+
   disableShare: boolean;
   linkCopied: boolean;
 }
@@ -85,7 +87,7 @@ export function DashboardHeader({
                 type="button"
                 onClick={() => {
                   setUserMenuOpen(false);
-                  onEditUsername();
+                  onEditUsername?.();
                 }}
               >
                 <FaUserEdit /> Alterar nome
@@ -190,15 +192,17 @@ export function DashboardHeader({
 
                 <div className="menu-divider"></div>
 
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActionsMenuOpen(false);
-                    onExportClient();
-                  }}
-                >
-                  <FaFileExport /> Exportar tabela
-                </button>
+                {onExportClient && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActionsMenuOpen(false);
+                      onExportClient();
+                    }}
+                  >
+                    <FaFileExport /> Exportar tabela
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={() => {
@@ -214,11 +218,13 @@ export function DashboardHeader({
         </div>
       </div>
 
-      <ImportClientsModal
-        isOpen={importModalOpen}
-        onClose={() => setImportModalOpen(false)}
-        onSubmit={onImportClient}
-      />
+      {onImportClient && (
+        <ImportClientsModal
+          isOpen={importModalOpen}
+          onClose={() => setImportModalOpen(false)}
+          onSubmit={onImportClient}
+        />
+      )}
 
       <DeleteUserModal
         isOpen={deleteModalOpen}
